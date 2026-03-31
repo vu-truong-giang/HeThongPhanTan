@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package student;
+
+service StudentService {
+    rpc getStudent (studentRequest) returns (stream studentResponse);
+}
+
+
+message studentRequest {
+    int32 age = 1;
+}
+
+message studentResponse {
+    int32 id = 1;
+    string name = 2;
+    int32 age = 3;
+}
