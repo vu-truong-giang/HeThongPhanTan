@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-import ThucHanh.Bai1_RemoteProcedureCall.unaryRPC.student_pb2 as student__pb2
+import sum_pb2 as sum__pb2
 
 GRPC_GENERATED_VERSION = '1.78.0'
 GRPC_VERSION = grpc.__version__
@@ -18,14 +18,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + ' but the generated code in student_pb2_grpc.py depends on'
+        + ' but the generated code in sum_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
     )
 
 
-class studentServiceStub(object):
+class SumServiceStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -34,43 +34,43 @@ class studentServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.getStudent = channel.unary_unary(
-                '/student.studentService/getStudent',
-                request_serializer=student__pb2.studentRequest.SerializeToString,
-                response_deserializer=student__pb2.studentResponse.FromString,
+        self.getSum = channel.unary_unary(
+                '/sum.SumService/getSum',
+                request_serializer=sum__pb2.sumRequest.SerializeToString,
+                response_deserializer=sum__pb2.sumResponse.FromString,
                 _registered_method=True)
 
 
-class studentServiceServicer(object):
+class SumServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def getStudent(self, request, context):
+    def getSum(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
 
-def add_studentServiceServicer_to_server(servicer, server):
+def add_SumServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'getStudent': grpc.unary_unary_rpc_method_handler(
-                    servicer.getStudent,
-                    request_deserializer=student__pb2.studentRequest.FromString,
-                    response_serializer=student__pb2.studentResponse.SerializeToString,
+            'getSum': grpc.unary_unary_rpc_method_handler(
+                    servicer.getSum,
+                    request_deserializer=sum__pb2.sumRequest.FromString,
+                    response_serializer=sum__pb2.sumResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'student.studentService', rpc_method_handlers)
+            'sum.SumService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('student.studentService', rpc_method_handlers)
+    server.add_registered_method_handlers('sum.SumService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class studentService(object):
+class SumService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def getStudent(request,
+    def getSum(request,
             target,
             options=(),
             channel_credentials=None,
@@ -83,9 +83,9 @@ class studentService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/student.studentService/getStudent',
-            student__pb2.studentRequest.SerializeToString,
-            student__pb2.studentResponse.FromString,
+            '/sum.SumService/getSum',
+            sum__pb2.sumRequest.SerializeToString,
+            sum__pb2.sumResponse.FromString,
             options,
             channel_credentials,
             insecure,
