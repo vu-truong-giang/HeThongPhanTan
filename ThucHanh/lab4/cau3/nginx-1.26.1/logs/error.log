@@ -1,0 +1,3 @@
+2026/04/16 08:15:50 [emerg] 23592#9520: no "events" section in configuration
+2026/04/17 00:48:13 [alert] 15800#20376: worker process 23900 exited with code C0000142
+2026/04/17 00:48:13 [alert] 15800#20376: could not respawn worker

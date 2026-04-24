@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+service StateService {
+  rpc Deactivate(Empty) returns (StateResponse);
+  rpc GetState(Empty) returns (StateResponse);
+}
+
+message Empty {}
+
+message StateResponse {
+  bool is_active = 1;
+}

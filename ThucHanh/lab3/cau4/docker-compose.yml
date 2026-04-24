@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  producer:
+    build: .
+    command: python producer.py
+    depends_on:
+      - rabbitmq
+
+  worker:
+    build: .
+    command: python worker.py
+    depends_on:
+      - rabbitmq

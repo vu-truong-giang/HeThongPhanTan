@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+service StringService {
+  rpc Concat (ConcatRequest) returns (ConcatResponse);
+}
+
+message ConcatRequest {
+  string s1 = 1;
+  string s2 = 2;
+}
+
+message ConcatResponse {
+  string result = 1;
+}
